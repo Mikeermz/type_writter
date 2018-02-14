@@ -7,7 +7,6 @@ window.onload = function() {
       new TxtType(elements[i], JSON.parse(words), period);
     }
   }
-
 };
 
 var TxtType = function(el, words, period) {
@@ -29,17 +28,16 @@ TxtType.prototype.writing = function() {
 
   this.el.innerHTML = '<span class="line-writter">'+this.txt+'</span>'
 
-  var delta = 200 - Math.random() * 100
+  var velocityWords = 100 - Math.random() * 50
 
-  if (this.isDeleting) delta /= 2
+  if (this.isDeleting) velocityWords /= 2
 
   if (!this.isDeleting && this.txt === fullTxt) {
-    delta = this.period
+    velocityWords = this.period
     this.isDeleting = true
   } else if (this.isDeleting && this.txt === '') {
     this.isDeleting = false
     this.cicle++
-    delta = 500
   }
-  setTimeout(() => { this.writing() }, delta)
+  setTimeout(() => { this.writing() }, velocityWords)
 };
